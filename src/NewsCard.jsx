@@ -1,0 +1,16 @@
+import React from 'react';
+
+const NewsCard = ({ article }) => (
+  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out">
+    {article.image && (
+      <img src={article.image} alt={article.headline} className="w-full h-48 object-cover"/>
+    )}
+    <div className="p-6">
+      <h3 className="text-xl font-bold text-indigo-800 mb-2">{article.headline}</h3>
+      <p className="text-gray-600 text-sm mb-4">{new Date(article.date).toLocaleDateString('en-AU')}</p>
+      <p className="text-gray-700 leading-relaxed">{article.content}</p>
+    </div>
+  </div>
+);
+
+export default NewsCard;
