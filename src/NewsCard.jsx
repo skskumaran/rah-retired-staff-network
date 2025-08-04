@@ -4,7 +4,6 @@ const NewsCard = ({ article }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out">
     {article.image && (
       <img 
-        <img 
         src={article.image ? article.image.replace(/^http:/, 'https:') : 'https://placehold.co/600x400/EFEFEF/AAAAAA&text=No+Image'} 
         alt={article.headline} 
         className="w-full h-48 object-cover"
