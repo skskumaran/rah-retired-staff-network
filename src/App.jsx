@@ -99,7 +99,7 @@ const StaffNetwork = ({ staff, onStaffClick }) => {
             .on("click", (event, d) => onStaffClick(d));
 
           div.append("img")
-            .attr("src", d => d.photo ? d.photo.replace(/^http:/, 'https://') : 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo')
+            .attr("src", d => d.photo ? `/images/${d.photo.split('/').pop()}` : 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo')
             .attr("alt", d => d.name)
             .attr("class", "w-full h-full rounded-full object-cover")
             .on("error", function() {
@@ -160,7 +160,7 @@ const StaffProfileModal = ({ staff, onClose }) => {
         </div>
         <div className="flex flex-col items-center text-center mb-4">
           <img 
-            src={staff.photo ? staff.photo.replace(/^http:/, 'https:') : 'https://placehold.co/128x128/AEC6CF/000000?text=No+Photo'} 
+            src={staff.photo ? `/images/${staff.photo.split('/').pop()}` : 'https://placehold.co/128x128/AEC6CF/000000?text=No+Photo'} 
             alt={staff.name} 
             className="w-32 h-32 rounded-full object-cover border-4 border-indigo-500 shadow-lg mb-4" 
             onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/128x128/AEC6CF/000000?text=No+Photo'; }}
@@ -212,6 +212,7 @@ function App() {
         })).filter(staff => staff.id && staff.name && staff.startYear && staff.endYear);
 
         setStaffData(parsedData);
+        console.log("Parsed Staff Data:", parsedData);
 
         if (parsedData.length > 0) {
             const allYears = parsedData.flatMap(d => [d.startYear, d.endYear]);
@@ -244,10 +245,11 @@ function App() {
             headline: row.title,
             date: new Date(row.date),
             content: row.content,
-            image: row.imageUrl,
+            image: row.imageUrl ? `/images/${row.imageUrl.split('/').pop()}` : '',
           };
         });
         setNews(parsedNews);
+        console.log("Parsed News Data:", parsedNews);
       } catch (e) {
         setNewsError("Failed to load news data.");
         console.error("News fetch error:", e);
