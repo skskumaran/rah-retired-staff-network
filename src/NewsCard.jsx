@@ -9,8 +9,6 @@ const NewsCard = ({ article }) => (
         className="w-full h-48 object-cover"
         onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/EFEFEF/AAAAAA&text=No+Image'; }}
       />
-        onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/EFEFEF/AAAAAA&text=No+Image'; }}
-      />
     )}
     <div className="p-6">
       <h3 className="text-xl font-bold text-indigo-800 mb-2">{article.headline}</h3>
