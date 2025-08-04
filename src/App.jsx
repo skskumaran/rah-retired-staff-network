@@ -252,9 +252,6 @@ function App() {
           };
         });
         setNews(parsedNews);
-        console.log("Parsed News Data:", parsedNews);
-        });
-        setNews(parsedNews);
       } catch (e) {
         setNewsError("Failed to load news data.");
         console.error("News fetch error:", e);
