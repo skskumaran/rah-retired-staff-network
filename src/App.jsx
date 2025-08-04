@@ -99,7 +99,7 @@ const StaffNetwork = ({ staff, onStaffClick }) => {
             .on("click", (event, d) => onStaffClick(d));
 
           div.append("img")
-            .attr("src", d => d.photo ? d.photo.replace(/^http:/, 'https':') : 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo')
+            .attr("src", d => d.photo ? d.photo.replace(/^http:/, 'https://') : 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo')
             .attr("alt", d => d.name)
             .attr("class", "w-full h-full rounded-full object-cover")
             .on("error", function() {
