@@ -4,10 +4,10 @@ const NewsCard = ({ article }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out">
     {article.image && (
       <img 
-        src={article.image ? article.image.replace(/^http:/, 'https:') : 'https://placehold.co/600x400/EFEFEF/AAAAAA&text=No+Image'} 
+        src={article.image || '/images/no-image.png'} 
         alt={article.headline} 
         className="w-full h-48 object-cover"
-        onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/EFEFEF/AAAAAA&text=No+Image'; }}
+        onError={(e) => { e.target.onerror = null; e.target.src='/images/no-image.png'; }}
       />
     )}
     <div className="p-6">

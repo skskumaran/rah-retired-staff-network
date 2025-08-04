@@ -99,15 +99,11 @@ const StaffNetwork = ({ staff, onStaffClick }) => {
             .on("click", (event, d) => onStaffClick(d));
 
           div.append("img")
-            .attr("src", d => {
-              const imageUrl = d.photo ? `/images/${d.photo.split('/').pop()}` : 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo';
-              console.log("Staff Image URL:", imageUrl);
-              return imageUrl;
-            })
+            .attr("src", d => d.photo || '/images/no-photo.png')
             .attr("alt", d => d.name)
             .attr("class", "w-full h-full rounded-full object-cover")
             .on("error", function() {
-              d3.select(this).attr("src", 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo');
+              d3.select(this).attr("src", '/images/no-photo.png');
             });
 
           div.append("span").attr("class", "text-xs font-semibold text-gray-800 mt-1 whitespace-nowrap")
@@ -164,10 +160,10 @@ const StaffProfileModal = ({ staff, onClose }) => {
         </div>
         <div className="flex flex-col items-center text-center mb-4">
           <img 
-            src={staff.photo ? `/images/${staff.photo.split('/').pop()}` : 'https://placehold.co/128x128/AEC6CF/000000?text=No+Photo'} 
+            src={staff.photo || '/images/no-photo.png'} 
             alt={staff.name} 
             className="w-32 h-32 rounded-full object-cover border-4 border-indigo-500 shadow-lg mb-4" 
-            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/128x128/AEC6CF/000000?text=No+Photo'; }}
+            onError={(e) => { e.target.onerror = null; e.target.src='/images/no-photo.png'; }}
           />
           <h2 className="text-2xl font-bold text-indigo-800">{staff.name}</h2>
           <p className="text-md text-gray-600">Years at RAH: {staff.startYear} - {staff.endYear}</p>
