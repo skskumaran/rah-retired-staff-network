@@ -99,7 +99,11 @@ const StaffNetwork = ({ staff, onStaffClick }) => {
             .on("click", (event, d) => onStaffClick(d));
 
           div.append("img")
-            .attr("src", d => d.photo ? `/images/${d.photo.split('/').pop()}` : 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo')
+            .attr("src", d => {
+              const imageUrl = d.photo ? `/images/${d.photo.split('/').pop()}` : 'https://placehold.co/60x60/AEC6CF/000000?text=No+Photo';
+              console.log("Staff Image URL:", imageUrl);
+              return imageUrl;
+            })
             .attr("alt", d => d.name)
             .attr("class", "w-full h-full rounded-full object-cover")
             .on("error", function() {
@@ -212,7 +216,6 @@ function App() {
         })).filter(staff => staff.id && staff.name && staff.startYear && staff.endYear);
 
         setStaffData(parsedData);
-        console.log("Parsed Staff Data:", parsedData);
 
         if (parsedData.length > 0) {
             const allYears = parsedData.flatMap(d => [d.startYear, d.endYear]);
@@ -250,6 +253,8 @@ function App() {
         });
         setNews(parsedNews);
         console.log("Parsed News Data:", parsedNews);
+        });
+        setNews(parsedNews);
       } catch (e) {
         setNewsError("Failed to load news data.");
         console.error("News fetch error:", e);
